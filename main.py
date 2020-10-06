@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
+import os
 app = Flask(__name__)
 
 @app.route("/")
@@ -13,9 +14,16 @@ def upload_request():
     try:
         fileData = request.files["file"]
         filename = secure_filename(fileData.filename)
-        fileData.save("images/" + filename)
+        fileData.save("static/images/" + filename)
         return "File Upload Successfully"
     except Exception as ex:
         return str(ex)
+
+
+@app.route("/images")
+def images():
+    return render_template("images.html", images = os.listdir("./static/images"), url = request.url_root)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
