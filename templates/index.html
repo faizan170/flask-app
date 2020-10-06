@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a File</title>
+</head>
+<body>
+    <form enctype = "multipart/form-data" id="upload_form" method="POST"> 
+    <p>Upload File: <input type = "file" id="uploadfile" name = "filename" /></p> 
+    <p><button type="submit" id="uploadBtn">Upload</button></p> 
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$("#upload_form").submit(function(e) {
+    e.preventDefault();    
+    var form_data = new FormData();
+    form_data.append('file', $('#uploadfile').prop('files')[0]);
+    $("#uploadBtn").html("Uploading")
+    $.ajax({
+        url: "/upload",
+        type: 'POST',
+        data: form_data,
+        success: function (data) {
+            alert(data)
+            $("#uploadBtn").html("Upload")
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+});
+</script>
+</body>
+</html>
