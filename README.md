@@ -40,17 +40,19 @@ sudo supervisorctl status
 ### 4. Configure Nginx
 Create a config file using
 ```
-sudo vim /etc/nginx/conf.d/virtual.conf
+sudo nano /etc/nginx/conf.d/virtual.conf
 ```
 And paste following code. Change IP with your machine IP
 ```
 server {
     listen       80;
     server_name  YOUR_IP_HERE;
+    client_max_body_size 300M;
 
     location / {
         proxy_pass http://127.0.0.1:8000;
         include proxy_params;
+
     }
 }
 ```

@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 import os
 app = Flask(__name__)
-
+app.config['MAX_CONTENT_LENGTH'] = 21 * 1024 * 1024
 @app.route("/")
 def home():
     return render_template("index.html")
