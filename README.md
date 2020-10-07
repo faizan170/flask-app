@@ -46,10 +46,11 @@ And paste following code. Change IP with your machine IP
 ```
 server {
     listen       80;
-    server_name  149.28.226.39;
+    server_name  YOUR_IP_HERE;
 
     location / {
         proxy_pass http://127.0.0.1:8000;
+        include proxy_params;
     }
 }
 ```
@@ -60,5 +61,5 @@ sudo service nginx restart
 ```
 Now go to
 ```
-http://YOUR_IP
+http://YOUR_IP_HERE
 ```
