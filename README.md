@@ -29,6 +29,12 @@ autorestart=true
 stderr_logfile=/var/log/hello_world/hello_world.err.log
 stdout_logfile=/var/log/hello_world/hello_world.out.log
 ```
+If you are root user, you have to create directory for logs and give permissions
+```
+sudo mkdir -p /var/log/hello_world
+sudo chown -R root:root /var/log/hello_world
+```
+
 Then run these commands
 ```
 sudo supervisorctl reread
@@ -66,4 +72,14 @@ sudo service nginx restart
 Now go to
 ```
 http://YOUR_IP_HERE
+```
+### 5. View Logs
+To view flask logs
+```
+cat /var/log/hello_world/hello_world.err.log
+cat /var/log/hello_world/hello_world.out.log
+```
+And to view nginx logs
+```
+cat /var/log/nginx/error.log
 ```
