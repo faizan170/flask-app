@@ -26,6 +26,8 @@ directory=/root/testapp
 command=/root/testapp/myprojectenv/bin/gunicorn app:app -b localhost:8000
 autostart=true
 autorestart=true
+stderr_logfile=/var/log/hello_world/hello_world.err.log
+stdout_logfile=/var/log/hello_world/hello_world.out.log
 ```
 Then run these commands
 ```
